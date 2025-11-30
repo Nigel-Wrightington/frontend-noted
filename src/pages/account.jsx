@@ -51,10 +51,6 @@ export default function Account() {
                   Rating: {review.rating} / 5
                 </div>
                 <p className="review-comment">{review.comment}</p>
-                <div className="review-date">
-                  {review.created_at &&
-                    new Date(review.created_at).toLocaleDateString()}
-                </div>
                 <Link to={`/albums/${review.album?.id}`}>
                   View album details
                 </Link>
