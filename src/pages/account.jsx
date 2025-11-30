@@ -22,10 +22,6 @@ export default function Account() {
       </section>
     );
   }
-
-  // Fallback display name if first name is not available
-  const displayName = user.first_name || user.username;
-
   // Main return block for logged-in users
   return (
     <section className="page account-page">
@@ -36,13 +32,6 @@ export default function Account() {
         <p>
           <strong>Username:</strong> {user.username}
         </p>
-
-        {/* Conditionally render full name only if first_name is available */}
-        {user.first_name && (
-          <p>
-            <strong>Name:</strong> {user.first_name} {user.last_name || ""}
-          </p>
-        )}
       </div>
 
       {/* Reviews section */}
@@ -59,12 +48,6 @@ export default function Account() {
           <ul className="review-list">
             {user.reviews.map((review) => (
               <li key={review.id} className="review-item">
-                <div className="review-header">
-                  <strong>
-                    {/* Safely access album title and artist with optional chaining */}
-                    {review.album?.title} – {review.album?.artist}
-                  </strong>
-                </div>
                 <div className="review-rating">
                   Rating: {review.rating} / 5
                 </div>
