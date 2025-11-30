@@ -9,7 +9,7 @@ export default function Account() {
       <section className="page account-page">
         <h1>Account</h1>
         <p>You must be logged in to view your account.</p>
-        <Link className="btn primary" to="/login">
+        <Link to="/login">
           Go to login
         </Link>
       </section>
@@ -30,12 +30,6 @@ export default function Account() {
             <strong>Name:</strong> {user.first_name} {user.last_name || ""}
           </p>
         )}
-        <p>
-          <strong>Member since:</strong>{" "}
-          {user.created_at
-            ? new Date(user.created_at).toLocaleDateString()
-            : "N/A"}
-        </p>
       </div>
 
       <section className="account-reviews">
