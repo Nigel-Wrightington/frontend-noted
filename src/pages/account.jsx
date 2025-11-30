@@ -33,7 +33,7 @@ export default function Account() {
       </div>
 
       <section className="account-reviews">
-        <h2>{displayName}&apos;s Reviews</h2>
+        <h2>{displayName}'s Reviews</h2>
         {(!user.reviews || user.reviews.length === 0) && (
           <p>You haven't reviewed any albums yet.</p>
         )}
