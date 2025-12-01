@@ -1,0 +1,53 @@
+/* Styles for ReviewPage component (replaces inline styles) */
+.review-page {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.review-form {
+  display: grid;
+  gap: 12px;
+}
+
+.image-preview {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cover-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.image-filename {
+  font-size: 13px;
+  color: #555;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.status-message {
+  color: #006400;
+}
+
+/* basic spacing for inputs/labels to keep layout tidy */
+.review-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.review-form input[type="text"],
+.review-form textarea,
+.review-form input[type="range"] {
+  padding: 6px 8px;
+  font-size: 14px;
+}
