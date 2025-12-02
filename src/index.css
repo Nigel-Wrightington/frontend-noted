@@ -1,0 +1,81 @@
+/* ========== Shared Page Layout ========== */
+.page {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.page a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.page a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* ========== Account Page ========== */
+.account-page .account-summary {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  background: #f9f9f9;
+}
+
+.account-page strong {
+  font-weight: bold;
+}
+
+.account-reviews h2 {
+  margin-bottom: 1rem;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.review-header {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.review-rating {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.review-comment {
+  margin-bottom: 0.5rem;
+}
+
+
+
+/* ========== Not Found Page ========== */
+.not-found h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #cc0000;
+}
+
+.not-found p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
