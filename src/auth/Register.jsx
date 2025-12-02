@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
+import "./Register.css";
+
 import { useAuth } from "./AuthContext";
 
 /** A form that allows users to register for a new account */
@@ -26,11 +28,19 @@ export default function Register() {
       <h1>Register for an account</h1>
       <form action={onRegister}>
         <label>
+          First Name
+          <input type="text" name="firstName" />
+        </label>
+        <label>
+          Last Name
+          <input type="text" name="lastName" />
+        </label>
+        <label>
           Username
           <input type="text" name="username" />
         </label>
         <label>
-          Password
+          Create Password
           <input type="password" name="password" required />
         </label>
         <button>Register</button>

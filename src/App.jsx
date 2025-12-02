@@ -3,6 +3,8 @@ import Layout from "./layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ReviewPage from "./auth/pages/ReviewPage";
+import Account from "./pages/Account";
+
 
 export default function App() {
   return (
@@ -12,6 +14,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
+        <Route path="/account" element={<Account />} />
       </Route>
     </Routes>
   );
