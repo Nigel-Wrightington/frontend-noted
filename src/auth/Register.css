@@ -1,0 +1,66 @@
+/* Center the whole page content */
+body, #root {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  font-family: Arial, sans-serif;
+}
+
+/* Rounded container around the whole form */
+form {
+  width: 420px;
+  padding: 30px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  text-align: center;
+}
+
+/* Title spacing */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Stack labels vertically */
+form label {
+  display: block;
+  text-align: left;
+  margin: 10px auto;
+  width: 90%;
+  font-weight: bold;
+}
+
+/* Style input fields */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 12px;
+  border: 1px solid #999;
+  font-size: 16px;
+}
+
+/* Submit button */
+form button {
+  width: 90%;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: 1px solid #888;
+  background-color: #eee;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: #ddd;
+}
+
+/* Login link spacing */
+a {
+  margin-top: 15px;
+  display: block;
+  text-align: center;
+  font-size: 14px;
+}
