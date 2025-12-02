@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 // Importing the useAuth hook from the AuthContext to access the user info
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../auth/AuthContext";
 
 // The Account component shows user account info and their album reviews
 export default function Account() {
