@@ -36,7 +36,7 @@ export default function Account() {
 
       {/* Reviews section */}
       <section className="account-reviews">
-        <h2>{user.username}'s Reviews</h2>
+        <h2>{user.username}s Reviews</h2>
 
         {/* Show a message if there are no reviews */}
         {(!user.reviews || user.reviews.length === 0) && (

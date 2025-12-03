@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import Layout from "./layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Account from "./pages/Account";
+import Account from "./pages/account";
 import NotFound from "./pages/notfound";
 
 
