@@ -4,6 +4,11 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ReviewPage from "./auth/pages/ReviewPage";
 import Account from "./pages/Account";
+import NotFound from "./pages/notfound";
+
+
+
+
 
 
 // These are just temp placeholder for Navbar to work //=====
@@ -26,6 +31,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
