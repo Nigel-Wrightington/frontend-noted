@@ -1,49 +1,59 @@
-// Importing Link from react-router-dom to handle internal navigation
+// Account.jsx
 import { Link } from "react-router-dom";
-
-// Importing the useAuth hook from the AuthContext to access the user info
 import { useAuth } from "../auth/AuthContext";
 
-// The Account component shows user account info and their album reviews
+// Shows account info for a logged-in user
 export default function Account() {
-  // Destructure the user object from the authentication context
+  // Get the current user from AuthContext
   const { user } = useAuth();
 
-  // If the user is not logged in, display a message prompting them to log in
+  // Handy for debugging in DevTools:
+  console.log("Account page user:", user);
+
+  // If no user, tell them to log in
   if (!user) {
     return (
       <section className="page account-page">
         <h1>Account</h1>
         <p>You must be logged in to view your account.</p>
-        {/* Link to navigate the user to the login page */}
-        <Link to="/login">
-          Go to login
-        </Link>
+        <Link to="/login">Go to login</Link>
       </section>
     );
   }
-  // Main return block for logged-in users
+
+  // Use first name if it exists, otherwise fall back to username
+  const displayName = user.first_name || user.username || "Your";
+
   return (
     <section className="page account-page">
       <h1>Account</h1>
 
-      {/* Summary section showing user's basic info */}
+      {/* Basic user info */}
       <div className="account-summary">
         <p>
           <strong>Username:</strong> {user.username}
         </p>
+        {user.email && (
+          <p>
+            <strong>Email:</strong> {user.email}
+          </p>
+        )}
       </div>
 
-      {/* Reviews section */}
+      {/* Reviews section – this will safely handle "no reviews" */}
       <section className="account-reviews">
+<<<<<<< Updated upstream
         <h2>{user.username}s Reviews</h2>
+=======
+        <h2>{displayName}s Reviews</h2>
+>>>>>>> Stashed changes
 
-        {/* Show a message if there are no reviews */}
+        {/* If there are no reviews, show a message */}
         {(!user.reviews || user.reviews.length === 0) && (
-          <p>You haven not reviewed any albums yet.</p>
+          <p>You have not reviewed any albums yet.</p>
         )}
 
-        {/* Render a list of reviews if available */}
+        {/* If there ARE reviews, render them */}
         {user.reviews && user.reviews.length > 0 && (
           <ul className="review-list">
             {user.reviews.map((review) => (
@@ -52,7 +62,6 @@ export default function Account() {
                   Rating: {review.rating} / 5
                 </div>
                 <p className="review-comment">{review.comment}</p>
-                {/* Link to navigate to the reviewed album's detail page */}
                 <Link to={`/albums/${review.album?.id}`}>
                   View album details
                 </Link>
