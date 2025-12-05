@@ -11,16 +11,27 @@ export function AuthProvider({ children }) {
     if (token) sessionStorage.setItem("token", token);
   }, [token]);
 
-  const register = async (credentials) => {
-    const response = await fetch(API + "/users/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
-    });
-    const result = await response.json();
-    if (!response.ok) throw Error(result.message || "Register Failed");
-    setToken(result.token);
-  };
+  
+const register = async (credentials) => {
+  const response = await fetch(`${API}/users/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    
+    let errorMsg = "Register Failed";
+    try {
+      const err = await response.json();
+      errorMsg = err.message || errorMsg;
+    } catch {}
+    throw new Error(errorMsg);
+  }
+
+  const result = await response.json();
+  setToken(result.token);
+};
 
   const login = async (credentials) => {
     const response = await fetch(API + "/users/login", {
