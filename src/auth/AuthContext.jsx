@@ -19,6 +19,27 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
+  
+const register = async (credentials) => {
+  const response = await fetch(`${API}/users/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    
+    let errorMsg = "Register Failed";
+    try {
+      const err = await response.json();
+      errorMsg = err.message || errorMsg;
+    } catch {}
+    throw new Error(errorMsg);
+  }
+
+  const result = await response.json();
+  setToken(result.token);
+};
   // ===== FETCH CURRENT LOGGED-IN USER REQUIREUSER/ME // === BOOKBUDDY // SS //
 
   async function fetchCurrentUser(currentToken) {
