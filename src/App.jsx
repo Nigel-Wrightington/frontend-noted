@@ -6,6 +6,7 @@ import Register from "./auth/Register";
 import ReviewPage from "./auth/pages/ReviewPage";
 import Account from "./pages/account";
 import NotFound from "./pages/notfound";
+import Albums from "./pages/albums";
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Register />} />
         {/* Required for Navbar slice */}
-
+        <Route path="/albums" element={Albums />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
