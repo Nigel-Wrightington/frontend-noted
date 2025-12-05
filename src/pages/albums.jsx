@@ -1,7 +1,7 @@
 // src/pages/Albums.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchAlbums } from "../api/api";
+import { fetchAlbums } from "../API/api";
 
 // This page shows a list of all albums
 export default function Albums() {
