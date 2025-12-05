@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Register />} />
         {/* Required for Navbar slice */}
-        <Route path="/albums" element={Albums />} />
+        <Route path="/albums" element={<Albums />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
