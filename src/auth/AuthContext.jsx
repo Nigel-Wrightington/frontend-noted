@@ -82,19 +82,6 @@ const register = async (credentials) => {
     fetchCurrentUser(token);
   }, [token]);
 
-  //============= REGISTER //==================//
-
-  const register = async (credentials) => {
-    const response = await fetch(API + "/users/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
-    });
-    const result = await response.json();
-    if (!response.ok) throw Error(result.message || "Register Failed");
-    setToken(result.token);
-  };
-
   // LOGIN  VERTICAL // SS//
 
   const login = async (credentials) => {
@@ -143,7 +130,6 @@ const register = async (credentials) => {
     status,
     error,
     isAuthenticated: !!user,
-    register,
     login,
     logout,
   };
