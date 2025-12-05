@@ -1,7 +1,7 @@
 // src/pages/Albums.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchAlbums } from "../API/api";
+import { fetchAlbums } from "../api/api.js";
 
 // This page shows a list of all albums
 export default function Albums() {
@@ -57,8 +57,12 @@ export default function Albums() {
                 <Link to={`/albums/${album.id}`}>{title}</Link>
               </h2>
 
-              <p><strong>Artist:</strong> {artist}</p>
-              <p><strong>Genre:</strong> {genre}</p>
+              <p>
+                <strong>Artist:</strong> {artist}
+              </p>
+              <p>
+                <strong>Genre:</strong> {genre}
+              </p>
             </li>
           );
         })}
