@@ -11,7 +11,7 @@ export default function NotFound() {
       <h1>404</h1>
 
       {/* Small message explaining the issue */}
-      <p>Sorry, we couldn't find that page.</p>
+      <p>Sorry, we could not find that page.</p>
 
       {/* Link that takes the user back to the homepage */}
       <Link to="/">
