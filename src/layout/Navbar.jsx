@@ -20,7 +20,7 @@ export default function Navbar() {
       <nav>
         {/* Always visible on all states (logged in/out) */}
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/browse">Browse</NavLink>
+        <NavLink to="/review">Submit a Review!</NavLink>
         <NavLink to="/account">Account</NavLink>
 
         {isAuthenticated ? (

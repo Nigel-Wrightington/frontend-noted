@@ -1,19 +1,21 @@
 import { Route, Routes } from "react-router";
+import Home from "./auth/pages/HomePage";
 import Layout from "./layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ReviewPage from "./auth/pages/ReviewPage";
 import Account from "./pages/account";
 import NotFound from "./pages/notfound";
+import Albums from "./pages/albums";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<p>Home page</p>} />
+        <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Register />} />
         {/* Required for Navbar slice */}
-
+        <Route path="/albums" element={Albums />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
