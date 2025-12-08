@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./ReviewPage.css";
+import { createReview } from "../../api/api";
+import { useAuth } from "../AuthContext";
 
 export default function ReviewPage() {
   const [artist, setArtist] = useState("");
@@ -10,6 +12,7 @@ export default function ReviewPage() {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
+  const { token } = useAuth();
 
   function handleImageChange(e) {
     const file = e.target.files && e.target.files[0];
@@ -33,7 +36,7 @@ export default function ReviewPage() {
     );
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!validate()) {
       setStatusMessage(
@@ -51,19 +54,17 @@ export default function ReviewPage() {
     formData.append("description", description);
     if (imageFile) formData.append("cover", imageFile);
 
-    // For now, just log the values (replace with API call)
-    console.log("Review payload:", {
-      artist,
-      album,
-      genre,
-      rating,
-      description,
-      imageFile,
-    });
-
-    setStatusMessage(
-      "Posted review without API. See console for User Messages."
-    );
+    // Call API to create the review
+    setStatusMessage("Posting review...");
+    try {
+      const { token } = useAuth();
+      // createReview expects FormData and optional token
+      await createReview(formData, token);
+      setStatusMessage("Review posted successfully.");
+    } catch (err) {
+      console.error("Failed to post review:", err);
+      setStatusMessage(err.message || "Failed to post review.");
+    }
 
     // The following code resets the code after you submit a review.
     setArtist("");
