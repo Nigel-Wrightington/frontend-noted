@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./ReviewPage.css";
+import { createReview } from "../../api/api";
+import { useAuth } from "../AuthContext";
 
 export default function ReviewPage() {
   const [artist, setArtist] = useState("");
@@ -10,6 +12,7 @@ export default function ReviewPage() {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
+  const { token, user } = useAuth();
 
   function handleImageChange(e) {
     const file = e.target.files && e.target.files[0];
@@ -33,7 +36,7 @@ export default function ReviewPage() {
     );
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!validate()) {
       setStatusMessage(
@@ -42,37 +45,39 @@ export default function ReviewPage() {
       return;
     }
 
-    // Prepare form data for later API integration
+    if (!token || !user || !user.id) {
+      setStatusMessage("Please log in to post a review.");
+      return;
+    }
+
+    // Prepare form data for API
     const formData = new FormData();
     formData.append("artist", artist);
     formData.append("album", album);
     formData.append("genre", genre);
     formData.append("rating", rating);
     formData.append("description", description);
+    formData.append("user_id", user.id); // Backend requires user_id
     if (imageFile) formData.append("cover", imageFile);
 
-    // For now, just log the values (replace with API call)
-    console.log("Review payload:", {
-      artist,
-      album,
-      genre,
-      rating,
-      description,
-      imageFile,
-    });
+    // Call API to create the review
+    setStatusMessage("Posting review...");
+    try {
+      await createReview(formData, token);
+      setStatusMessage("Review posted successfully.");
 
-    setStatusMessage(
-      "Posted review without API. See console for User Messages."
-    );
-
-    // The following code resets the code after you submit a review.
-    setArtist("");
-    setAlbum("");
-    setGenre("");
-    setRating(3); //this is just the default for whats open when you open the page.
-    setDescription("");
-    setImageFile(null);
-    setImagePreview(null);
+      // Reset form after successful post
+      setArtist("");
+      setAlbum("");
+      setGenre("");
+      setRating(3);
+      setDescription("");
+      setImageFile(null);
+      setImagePreview(null);
+    } catch (err) {
+      console.error("Failed to post review:", err);
+      setStatusMessage(err.message || "Failed to post review.");
+    }
   }
 
   return (

@@ -9,7 +9,9 @@ export default function Login() {
 
   const [error, setError] = useState(null);
 
-  const onLogin = async (formData) => {
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const username = formData.get("username");
     const password = formData.get("password");
     setError(null);
@@ -28,7 +30,7 @@ export default function Login() {
   return (
     <>
       <h1>Log in to your account</h1>
-      <form action={onLogin}>
+      <form onSubmit={onLogin}>
         <label>
           Username
           <input type="text" name="username" required />
