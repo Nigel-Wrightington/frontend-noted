@@ -19,27 +19,44 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
-  
-const register = async (credentials) => {
-  const response = await fetch(`${API}/users/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-  });
+  const register = async (credentials) => {
+    setStatus("loading");
+    setError(null);
 
-  if (!response.ok) {
-    
-    let errorMsg = "Register Failed";
+    if (!API) {
+      const msg = "API endpoint not configured. Set VITE_API in .env.local";
+      setStatus("error");
+      setError(msg);
+      console.error(msg);
+      throw new Error(msg);
+    }
+
     try {
-      const err = await response.json();
-      errorMsg = err.message || errorMsg;
-    } catch {}
-    throw new Error(errorMsg);
-  }
+      const response = await fetch(`${API}/users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
 
-  const result = await response.json();
-  setToken(result.token);
-};
+      const text = await response.text();
+
+      if (!response.ok) {
+        setStatus("error");
+        setError(text || "Register failed.");
+        throw new Error(text || "Register failed.");
+      }
+
+      // Backend returns plain token string
+      const token = text;
+      setToken(token);
+      setStatus("authenticated");
+    } catch (err) {
+      console.error("Register error:", err);
+      setStatus("error");
+      setError(err.message || "Register failed.");
+      throw err;
+    }
+  };
   // ===== FETCH CURRENT LOGGED-IN USER REQUIREUSER/ME // === BOOKBUDDY // SS //
 
   async function fetchCurrentUser(currentToken) {
@@ -88,31 +105,46 @@ const register = async (credentials) => {
     setStatus("loading");
     setError(null);
 
-    const response = await fetch(API + "/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
-    });
-
-    const text = await response.text();
-
-    if (!response.ok) {
+    if (!API) {
+      const msg = "API endpoint not configured. Set VITE_API in .env.local";
       setStatus("error");
-      setError(text || "Login failed.");
-      throw Error(text);
+      setError(msg);
+      console.error(msg);
+      throw new Error(msg);
     }
 
-    // LOGIN ROUTE TO SEND JSON: { token } // PARSE THE TOKEN & SUPPER PLAIN TEXT //
-    let actualToken;
     try {
-      const data = JSON.parse(text);
-      actualToken = data.token ?? text;
-    } catch {
-      actualToken = text;
-    }
+      const response = await fetch(API + "/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
 
-    setToken(actualToken);
-    setStatus("authenticated");
+      const text = await response.text();
+
+      if (!response.ok) {
+        setStatus("error");
+        setError(text || "Login failed.");
+        throw new Error(text || "Login failed.");
+      }
+
+      // LOGIN ROUTE TO SEND JSON: { token } // PARSE THE TOKEN & SUPPER PLAIN TEXT //
+      let actualToken;
+      try {
+        const data = JSON.parse(text);
+        actualToken = data.token ?? text;
+      } catch {
+        actualToken = text;
+      }
+
+      setToken(actualToken);
+      setStatus("authenticated");
+    } catch (err) {
+      console.error("Login error:", err);
+      setStatus("error");
+      setError(err.message || "Login failed.");
+      throw err;
+    }
   };
 
   //======== LOGOUT VERTICAL -- SHERIN FRONTEND ONLY BY DELETING TOKEN ====== //
@@ -132,6 +164,7 @@ const register = async (credentials) => {
     isAuthenticated: !!user,
     login,
     logout,
+    register,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
