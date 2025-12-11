@@ -1,0 +1,82 @@
+/* Album cover styling */
+.album-cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+}
+
+/* Edit form styling */
+.edit-form {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.edit-form label input[type="range"],
+.edit-form label textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.edit-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+/* Edit actions (buttons) */
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.edit-actions button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.edit-actions button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Review actions (Edit/Delete buttons) */
+.review-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.review-actions button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  font-size: 0.9rem;
+}
+
+.review-actions button:hover {
+  background-color: #e0e0e0;
+}
+
+.status-message {
+  color: #006400;
+  margin-top: 0.5rem;
+}
