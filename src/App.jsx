@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import Home from "./auth/pages/HomePage";
 import Layout from "./layout/Layout";
 import Login from "./auth/Login";
@@ -19,7 +19,6 @@ export default function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review" element={<ReviewPage />} />
-        <Route path="/account" element={<Account />} />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>
