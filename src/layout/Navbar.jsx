@@ -11,29 +11,31 @@ export default function Navbar() {
   }
   return (
     <header id="navbar">
-      {/* Website name on the left // Optional, incase we need it for css */}
-      <NavLink id="brand" to="/">
-        <p>Noted</p>
-      </NavLink>
+      <div className="navbar-inner">
+        {/* Website name (NOT a link anymore) */}
+        <NavLink id="brand" to="/" className="brand-link">
+          Noted
+        </NavLink>
 
-      {/* Navigation links */}
-      <nav>
-        {/* Always visible on all states (logged in/out) */}
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/review">Submit a Review!</NavLink>
-        <NavLink to="/account">Account</NavLink>
+        {/* Navigation links */}
+        <nav>
+          {/* Always visible */}
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/review">Submit a Review!</NavLink>
+          <NavLink to="/account">Account</NavLink>
 
-        {isAuthenticated ? (
-          // Logged IN: show only Logout // will shwo all other links too //
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          // Logged OUT: show Login + Register plus all other navlinks //
-          <>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
-          </>
-        )}
-      </nav>
+          {isAuthenticated ? (
+            // Logged IN
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            // Logged OUT
+            <>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/register">Register</NavLink>
+            </>
+          )}
+        </nav>
+      </div>
     </header>
   );
 }

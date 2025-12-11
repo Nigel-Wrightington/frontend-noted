@@ -1,9 +1,13 @@
 /* ========== Shared Page Layout ========== */
 .page {
-  padding: 2rem;
-  max-width: 700px;
+  padding: 1rem 2rem 2rem; /* less top padding, same sides/bottom */
+  max-width: 900px; /* a bit wider so nav + form breathe */
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ⬅ centers the login/register card */
 }
 
 .page h1 {
@@ -19,8 +23,6 @@
 .page a:hover {
   text-decoration: underline;
 }
-
-
 
 /* ========== Account Page ========== */
 .account-page .account-summary {
@@ -66,8 +68,6 @@
   margin-bottom: 0.5rem;
 }
 
-
-
 /* ========== Not Found Page ========== */
 .not-found h1 {
   font-size: 4rem;
@@ -78,4 +78,91 @@
 .not-found p {
   margin-bottom: 1rem;
   font-size: 1.1rem;
+}
+
+/* Navstyle only */
+
+#navbar {
+  display: flex;
+  justify-content: center; /* center Noted + links within .page */
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 1rem;
+  background: transparent; /* no dark bar */
+}
+
+/* "Noted" brand */
+#navbar #brand p {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* nav links row */
+#navbar nav {
+  display: flex;
+  justify-content: center;
+  gap: 48px; /* good spacing without breaking to 2 lines */
+  width: 100%;
+  flex-wrap: nowrap; /* ⬅ prevents Submit a Review! from dropping down */
+}
+
+/* links */
+#navbar nav a {
+  color: #ffffff;
+  font-size: 1rem;
+  white-space: nowrap; /* keep "Submit a Review!" on one line */
+
+  text-decoration: none;
+}
+
+#navbar nav a:hover {
+  text-decoration: underline;
+  color: #dddddd;
+}
+
+/* logout button styled like a link */
+#navbar button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#navbar button:hover {
+  text-decoration: underline;
+  color: #dddddd;
+}
+
+/* Noted brand name */
+#brand {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+
+  /* BRAND VISUAL UPGRADE */
+  font-size: 2.4rem; /* bigger text NOTED */
+  font-weight: 800; /* extra bold */
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* soft glow  - Instagram filter glow*/
+}
+
+/* bran noted navlink without hyperlink */
+.brand-link {
+  text-decoration: none !important; /* no underline */
+  color: #ffffff !important; /* white */
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+/* Prevent hover underline ONLY for brand */
+.brand-link:hover {
+  text-decoration: none !important;
+  color: #ffffff;
 }
