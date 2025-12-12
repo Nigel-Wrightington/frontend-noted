@@ -15,6 +15,8 @@ export default function Navbar() {
         {/* Website name (NOT a link anymore) */}
         <NavLink id="brand" to="/" className="brand-link">
           Noted
+          
+           <p>user-created album reviews of new music</p>
         </NavLink>
 
         {/* Navigation links */}
