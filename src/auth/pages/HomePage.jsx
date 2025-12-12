@@ -22,23 +22,6 @@ export default function Home() {
     fetchHighestRated();
   }, []);
 
-  // Test fetching users (hidden, for dev only)
-  useEffect(() => {
-    async function fetchUsers() {
-      const token = localStorage.getItem("token");
-      try {
-        const res = await fetch("/users", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (!res.ok) throw new Error("Failed to fetch users");
-        const data = await res.json();
-        console.log("Fetched users:", data); // just log to console
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchUsers();
-  }, []);
 
   if (loading) return <p>Loading Highest rated reviews</p>;
   if (error) return <p>Error: {error}</p>;
