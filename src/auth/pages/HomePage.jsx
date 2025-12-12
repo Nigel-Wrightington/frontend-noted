@@ -28,8 +28,8 @@ export default function Home() {
 
   return (
     <>
-      <h1>Noted</h1>
-      <p>user-created album reviews of new music</p>
+      
+    
 
       <section>
         <h2>Highest Rated Reviews</h2>
@@ -39,11 +39,7 @@ export default function Home() {
           <ul>
             {highestRated.map((review) => (
               <li key={review.id}>
-                <img
-                  src={`/uploads/${review.img}`}   
-                  alt={`${review.title} cover`}
-                  style={{ width: "100px", height: "100px", objectFit: "cover", marginRight: "10px" }}
-                />
+                
                 <strong>{review.title}</strong> by {review.artist} - Rating: {review.rating}
                 <p>{review.review}</p> 
               </li>
