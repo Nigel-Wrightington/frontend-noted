@@ -6,7 +6,7 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   // Backend URL (adjust for production)
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+  const BACKEND_URL = import.meta.env.VITE_API;
 
   // Fetch highest rated reviews
   useEffect(() => {
