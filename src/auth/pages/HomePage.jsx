@@ -6,7 +6,7 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   // Backend URL (adjust for production)
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   // Fetch highest rated reviews
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Home() {
       ) : (
         <ul>
           {highestRated.map((review) => {
-            // Use backend URL for uploads, fallback to placeholder
+            
             const imgSrc = review.img
               ? `${BACKEND_URL}/uploads/${encodeURIComponent(review.img)}`
               : "/placeholder.png";
